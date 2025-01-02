@@ -5,6 +5,7 @@ import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
 
+
 const defaultTodos = [
   { text: 'Cortar cebolla', completed: true },
   { text: 'Tomar el Curso de Intro a React.js', completed: false },
@@ -24,6 +25,18 @@ function App() {
   ).length;
   const totalTodos = todos.length;
 
+
+
+  // mensaje de completados o no completados
+
+  const totalTodosCompleted = () => totalTodos === -1 ;
+  if (totalTodos === 0) {
+    alert('No hay elementos en la lista');
+    return null;
+  }
+
+
+
   // filtrar los todos que contengan el texto que se esta buscando
   const searchedTodos = todos.filter(
     (todo) => {
@@ -37,26 +50,33 @@ function App() {
   const completeTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
-      (todo) => todo.text == text
+      (todo) => todo.text === text
     );
     newTodos[todoIndex].completed = true;
     setTodos(newTodos);
   };
 
+
+
+  
+  // funcion para eliminar un todo
   const deleteTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
       (todo) => todo.text == text
     );
+    // splice elimina un elemento de un array
     newTodos.splice(todoIndex, 1);
     setTodos(newTodos);
   };
-  
+
+
+
   return (
     <>
       <TodoCounter
         completed={completedTodos}
-        total={totalTodos} 
+        total={totalTodos}
       />
       <TodoSearch
         searchValue={searchValue}
@@ -69,12 +89,12 @@ function App() {
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
+            onCompleted={() => completeTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
           />
         ))}
       </TodoList>
-      
+
       <CreateTodoButton />
     </>
   );
