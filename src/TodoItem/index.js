@@ -1,14 +1,15 @@
 import './TodoItem.css';
-import './App.js'
+import '../App/index'
 import React from 'react';
 import { RxCrossCircled } from "react-icons/rx";
 import { TiTick } from "react-icons/ti";
 
 
 function TodoItem(props) {
+    
     return (
         <li className="TodoItem">
-            <span className={`Icon Icon-check ${props.completed && "Icon-check--active"}`} onClick={props.onComplete}>
+            <span className={`Icon Icon-check ${props.completed && "Icon-check--active"}`} onClick={props.onCompleted}>
 
                 {/* son los iconos de check y delete que descargue de la pagina de react-icons */}
                 <TiTick className='Icon-check-hover' />

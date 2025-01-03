@@ -1,10 +1,6 @@
 import React from 'react';
-import { TodoCounter } from './TodoCounter';
-import { TodoSearch } from './TodoSearch';
-import { TodoList } from './TodoList';
-import { TodoItem } from './TodoItem';
-import { CreateTodoButton } from './CreateTodoButton';
-
+import{useLocalStorage} from './useLocalStorage';
+import { AppUI } from './AppUI';
 
 const defaultTodos = [
   { text: 'Cortar cebolla', completed: true },
@@ -14,8 +10,12 @@ const defaultTodos = [
   { text: 'Usar estados derivados', completed: true },
 ];
 
+
+
 function App() {
-  const [todos, setTodos] = React.useState(defaultTodos);
+
+
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = React.useState('');
 
   // verifica cuantos todos estan completados 
@@ -26,14 +26,13 @@ function App() {
   const totalTodos = todos.length;
 
 
-
   // mensaje de completados o no completados
 
-  const totalTodosCompleted = () => totalTodos === -1 ;
-  if (totalTodos === 0) {
-    alert('No hay elementos en la lista');
-    return null;
-  }
+  // const totalTodosCompleted = () => totalTodos === -1;
+  // if (totalTodos === 0) {
+  //   alert('No hay elementos en la lista');
+  //   return [];
+  // }
 
 
 
@@ -46,6 +45,9 @@ function App() {
     }
   );
 
+
+
+
   // funcion para marcar un todo como completado
   const completeTodo = (text) => {
     const newTodos = [...todos];
@@ -53,12 +55,12 @@ function App() {
       (todo) => todo.text === text
     );
     newTodos[todoIndex].completed = true;
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
 
 
-  
+
   // funcion para eliminar un todo
   const deleteTodo = (text) => {
     const newTodos = [...todos];
@@ -67,37 +69,19 @@ function App() {
     );
     // splice elimina un elemento de un array
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
+return (<AppUI
+completeTodo={completeTodo}
+deleteTodo={deleteTodo}
+searchedTodos={searchedTodos}
+searchValue={searchValue}
+setSearchValue={setSearchValue}
+totalTodos={totalTodos}
+completedTodos={completedTodos}
+/>);
 
-
-  return (
-    <>
-      <TodoCounter
-        completed={completedTodos}
-        total={totalTodos}
-      />
-      <TodoSearch
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
-
-      <TodoList>
-        {searchedTodos.map(todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onCompleted={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
-
-      <CreateTodoButton />
-    </>
-  );
 }
 
 export default App;
