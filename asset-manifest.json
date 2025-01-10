@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Gabriela-contreras/lista-intro-react.git/static/css/main.df96d939.css",
+    "main.js": "/Gabriela-contreras/lista-intro-react.git/static/js/main.4348b484.js",
+    "index.html": "/Gabriela-contreras/lista-intro-react.git/index.html",
+    "main.df96d939.css.map": "/Gabriela-contreras/lista-intro-react.git/static/css/main.df96d939.css.map",
+    "main.4348b484.js.map": "/Gabriela-contreras/lista-intro-react.git/static/js/main.4348b484.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df96d939.css",
+    "static/js/main.4348b484.js"
+  ]
+}
