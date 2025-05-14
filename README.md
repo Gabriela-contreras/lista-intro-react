@@ -56,8 +56,9 @@ Construye la aplicación para producción en la carpeta `build`. Optimiza el ren
 
 ### `npm run eject`
 Este comando permite personalizar la configuración del proyecto. **Úsalo con precaución.**
+---
+## ⭐ Sígueme 
 
-##Sígueme⭐
 Si te gustó este proyecto, ¡sígueme y dale like! ⭐
 
 ¡Explora y diviértete aprendiendo React! 🚀
